@@ -1,0 +1,105 @@
+@model IEnumerable<SistemaMedicamentos.Models.Entrega>
+@{
+    ViewData["Title"] = "Panel";
+}
+<div class="card-flat">
+    <div class="card-header-flat d-flex justify-content-between align-items-center">
+        <span>Panel general</span>
+        <span class="small fw-normal">@ViewBag.AppDescripcion</span>
+    </div>
+    <div class="card-body-flat">
+        <div class="row g-3 mb-4">
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-icon icon-blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6" /></svg>
+                    </div>
+                    <div><div class="num">@ViewBag.TotalPacientes</div><div class="lbl">Pacientes</div><a asp-controller="Pacientes" asp-action="Index" class="small">Ver pacientes &rarr;</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-icon icon-sky">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="10" rx="5" transform="rotate(-45 12 12)" /><line x1="8.5" y1="8.5" x2="15.5" y2="15.5" /></svg>
+                    </div>
+                    <div><div class="num">@ViewBag.TotalMedicinas</div><div class="lbl">Medicinas</div><a asp-controller="Medicinas" asp-action="Index" class="small">Ver medicinas &rarr;</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-icon icon-green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" /><line x1="9" y1="7" x2="10" y2="7" /><line x1="14" y1="7" x2="15" y2="7" /><line x1="9" y1="11" x2="10" y2="11" /><line x1="14" y1="11" x2="15" y2="11" /><line x1="9" y1="15" x2="10" y2="15" /><line x1="14" y1="15" x2="15" y2="15" /></svg>
+                    </div>
+                    <div><div class="num">@ViewBag.TotalSedes</div><div class="lbl">Sedes</div><a asp-controller="Sedes" asp-action="Index" class="small">Ver sedes &rarr;</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-icon icon-blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="1" /><path d="M9 4a3 3 0 0 1 6 0" /><line x1="9" y1="11" x2="15" y2="11" /><line x1="9" y1="15" x2="15" y2="15" /></svg>
+                    </div>
+                    <div><div class="num">@ViewBag.TotalEntregas</div><div class="lbl">Entregas</div><a asp-controller="Entregas" asp-action="Index" class="small">Ver entregas &rarr;</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-icon icon-sky">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+                    </div>
+                    <div><div class="num">@ViewBag.Pendientes</div><div class="lbl">Pendientes</div><a asp-controller="Entregas" asp-action="Index" asp-route-estado="Pendiente" class="small">Ver pendientes &rarr;</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-icon icon-red">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 20h20L12 3z" /><line x1="12" y1="10" x2="12" y2="14" /><circle cx="12" cy="17" r="0.5" /></svg>
+                    </div>
+                    <div><div class="num">@ViewBag.StockBajo</div><div class="lbl">Stock bajo (&lt;50)</div><a asp-controller="Medicinas" asp-action="Index" class="small">Revisar stock &rarr;</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-lg-8">
+                <div class="section-title">Próximas entregas</div>
+                <table class="table table-striped table-bordered table-flat">
+                    <thead><tr><th>Fecha</th><th>Paciente</th><th>Medicina</th><th>Sede</th><th>Estado</th></tr></thead>
+                    <tbody>
+                        @foreach (var e in Model)
+                        {
+                            var insignia = e.Estado == SistemaMedicamentos.Models.EstadoEntrega.Entregado ? "badge-entregado" : e.Estado == SistemaMedicamentos.Models.EstadoEntrega.Pendiente ? "badge-pendiente" : "badge-cancelado";
+                            <tr>
+                                <td>@e.FechaEntrega.ToString("dd/MM/yyyy")</td>
+                                <td>@e.Paciente?.NombreCompleto</td>
+                                <td>@e.Medicina?.Nombre</td>
+                                <td>@e.Sede?.Nombre</td>
+                                <td><span class="badge @insignia">@e.Estado</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <div class="section-title">Entregas por sede</div>
+                <table class="table table-striped table-bordered table-flat mb-3">
+                    <thead><tr><th>Sede</th><th class="text-center">Total</th></tr></thead>
+                    <tbody>
+                        @foreach (var f in ViewBag.EntregasPorSede)
+                        {
+                            <tr>
+                                <td>@f.Sede <span class="text-muted small">(@f.Ciudad)</span></td>
+                                <td class="text-center fw-bold">@f.Total</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="section-title">Accesos rápidos</div>
+                <div class="d-grid gap-2">
+                    <a asp-controller="Entregas" asp-action="Create" class="btn btn-flat-green">+ Nueva entrega</a>
+                    <a asp-controller="Pacientes" asp-action="Create" class="btn btn-flat-primary">+ Nuevo paciente</a>
+                    <a asp-controller="Medicinas" asp-action="Create" class="btn btn-flat-primary">+ Nueva medicina</a>
+                    <a asp-controller="Dashboard" asp-action="Calendar" class="btn btn-secondary">Ver calendario</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

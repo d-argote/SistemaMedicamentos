@@ -1,0 +1,40 @@
+@model IEnumerable<SistemaMedicamentos.Models.Sede>
+<table class="table table-striped table-bordered table-flat">
+    <thead>
+        <tr>
+            <th>Sede</th>
+            <th>Ciudad</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Nombre</td>
+                <td>@s.Ciudad</td>
+                <td>@s.Telefono</td>
+                <td>
+                    @if (s.Activa)
+                    {
+                        <span class="badge badge-entregado">Activa</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-cancelado">Inactiva</span>
+                    }
+                </td>
+                <td class="text-nowrap">
+                    <a asp-action="Details" asp-route-id="@s.Id" class="btn btn-sm btn-flat-primary">Ver</a>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@s.Id" class="btn btn-sm btn-flat-red">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

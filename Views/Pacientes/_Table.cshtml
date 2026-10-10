@@ -1,0 +1,31 @@
+@model IEnumerable<SistemaMedicamentos.Models.Paciente>
+<table class="table table-striped table-bordered table-flat">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>F. Nacimiento</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.NombreCompleto</td>
+                <td>@p.Dni</td>
+                <td>@p.Telefono</td>
+                <td>@p.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td class="text-nowrap">
+                    <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-sm btn-flat-primary">Ver</a>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-sm btn-flat-red">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

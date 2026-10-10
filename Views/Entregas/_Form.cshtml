@@ -1,0 +1,52 @@
+@model SistemaMedicamentos.Models.Entrega
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label asp-for="PacienteId" class="form-label"></label>
+        <select asp-for="PacienteId" asp-items="ViewBag.PacienteId" class="form-select"><option value="">-- Seleccione --</option></select>
+        <span asp-validation-for="PacienteId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="MedicinaId" class="form-label"></label>
+        <select asp-for="MedicinaId" asp-items="ViewBag.MedicinaId" class="form-select"><option value="">-- Seleccione --</option></select>
+        <span asp-validation-for="MedicinaId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="SedeId" class="form-label"></label>
+        <select asp-for="SedeId" asp-items="ViewBag.SedeId" class="form-select"><option value="">-- Seleccione --</option></select>
+        <span asp-validation-for="SedeId" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label asp-for="FechaRecepcion" class="form-label"></label>
+        <input asp-for="FechaRecepcion" class="form-control" type="date" />
+        <span asp-validation-for="FechaRecepcion" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="FechaEntrega" class="form-label"></label>
+        <input asp-for="FechaEntrega" class="form-control" type="date" />
+        <span asp-validation-for="FechaEntrega" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="Cantidad" class="form-label"></label>
+        <input asp-for="Cantidad" class="form-control" type="number" min="1" />
+        <span asp-validation-for="Cantidad" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Estado" class="form-label"></label>
+        <select asp-for="Estado" asp-items="Html.GetEnumSelectList<SistemaMedicamentos.Models.EstadoEntrega>()" class="form-select"></select>
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Comprobante (archivo)</label>
+        <input type="file" name="comprobante" class="form-control" />
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="Observaciones" class="form-label"></label>
+    <textarea asp-for="Observaciones" class="form-control" rows="2"></textarea>
+    <span asp-validation-for="Observaciones" class="text-danger"></span>
+</div>

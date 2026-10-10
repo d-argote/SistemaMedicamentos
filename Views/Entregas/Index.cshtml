@@ -1,0 +1,24 @@
+@model IEnumerable<SistemaMedicamentos.Models.Entrega>
+@{
+    ViewData["Title"] = "Entregas";
+}
+<div class="card-flat">
+    <div class="card-header-flat d-flex justify-content-between align-items-center">
+        <span>Entregas de medicamentos</span>
+        <a asp-action="Create" class="btn btn-light btn-sm">+ Nueva entrega</a>
+    </div>
+    <div class="card-body-flat">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-md-6">
+                <select name="estado" class="form-select" onchange="this.form.submit()">
+                    <option value="">Todos los estados</option>
+                    <option value="Pendiente" selected="@(ViewBag.EstadoActual == "Pendiente")">Pendiente</option>
+                    <option value="Entregado" selected="@(ViewBag.EstadoActual == "Entregado")">Entregado</option>
+                    <option value="Cancelado" selected="@(ViewBag.EstadoActual == "Cancelado")">Cancelado</option>
+                </select>
+            </div>
+            <div class="col-md-6"><a asp-controller="Dashboard" asp-action="Calendar" class="btn btn-flat-primary w-100">Ver calendario</a></div>
+        </form>
+        <partial name="_Table" model="Model" />
+    </div>
+</div>

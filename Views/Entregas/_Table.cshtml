@@ -1,0 +1,38 @@
+@model IEnumerable<SistemaMedicamentos.Models.Entrega>
+<table class="table table-striped table-bordered table-flat">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Medicina</th>
+            <th>Sede</th>
+            <th>F. Recepción</th>
+            <th>F. Entrega</th>
+            <th>Cant.</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            var badge = e.Estado == SistemaMedicamentos.Models.EstadoEntrega.Entregado ? "badge-entregado" : e.Estado == SistemaMedicamentos.Models.EstadoEntrega.Pendiente ? "badge-pendiente" : "badge-cancelado";
+            <tr>
+                <td>@e.Paciente?.NombreCompleto</td>
+                <td>@e.Medicina?.Nombre</td>
+                <td>@e.Sede?.Nombre</td>
+                <td>@e.FechaRecepcion.ToString("dd/MM/yyyy")</td>
+                <td>@e.FechaEntrega.ToString("dd/MM/yyyy")</td>
+                <td>@e.Cantidad</td>
+                <td><span class="badge @badge">@e.Estado</span></td>
+                <td class="text-nowrap">
+                    <a asp-action="Details" asp-route-id="@e.Id" class="btn btn-sm btn-flat-primary">Ver</a>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@e.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@e.Id" class="btn btn-sm btn-flat-red">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

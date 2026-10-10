@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Calendario de entregas";
+}
+<div class="card-flat">
+    <div class="card-header-flat d-flex justify-content-between align-items-center">
+        <span>Calendario de entregas (fecha de entrega)</span>
+        <a asp-controller="Entregas" asp-action="Index" class="btn btn-light btn-sm">Ver lista</a>
+    </div>
+    <div class="card-body-flat">
+        <p class="text-muted small">Las entregas se cargan con <strong>AJAX (jQuery)</strong> desde el endpoint <code>/Dashboard/EventosJson</code>, sin recargar la página. Clic en una entrega para ver el detalle.</p>
+        <div id="calendario"></div>
+        <p class="mt-2 small">
+            <span class="badge badge-pendiente">Pendiente</span>
+            <span class="badge badge-entregado">Entregado</span>
+            <span class="badge badge-cancelado">Cancelado</span>
+        </p>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script src="~/js/calendar.js" asp-append-version="true"></script>
+}

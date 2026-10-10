@@ -1,0 +1,15 @@
+@model SistemaMedicamentos.Models.Medicina
+@{
+    ViewData["Title"] = "Nueva medicina";
+}
+<div class="card-flat">
+    <div class="card-header-flat">Nueva medicina</div>
+    <div class="card-body-flat">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <partial name="_Form" model="Model" />
+            <button type="submit" class="btn btn-flat-green">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </form>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

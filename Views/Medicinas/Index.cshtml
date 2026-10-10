@@ -1,0 +1,21 @@
+@model IEnumerable<SistemaMedicamentos.Models.Medicina>
+@{
+    ViewData["Title"] = "Medicinas";
+}
+<div class="card-flat">
+    <div class="card-header-flat d-flex justify-content-between align-items-center">
+        <span>Medicinas</span>
+        @if (User.IsInRole("Administrador"))
+        {
+            <a asp-action="Create" class="btn btn-light btn-sm">+ Nueva medicina</a>
+        }
+    </div>
+    <div class="card-body-flat">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-md-6"><input name="buscar" value="@ViewBag.Buscar" class="form-control" placeholder="Buscar por nombre o laboratorio..." /></div>
+            <div class="col-md-3"><button class="btn btn-flat-primary w-100">Buscar</button></div>
+            <div class="col-md-3"><a asp-action="Index" class="btn btn-secondary w-100">Limpiar</a></div>
+        </form>
+        <partial name="_Table" model="Model" />
+    </div>
+</div>

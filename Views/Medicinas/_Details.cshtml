@@ -1,0 +1,13 @@
+@model SistemaMedicamentos.Models.Medicina
+<dl class="row">
+    <dt class="col-sm-3">Medicina</dt><dd class="col-sm-9">@Model.Nombre</dd>
+    <dt class="col-sm-3">Descripción</dt><dd class="col-sm-9">@Model.Descripcion</dd>
+    <dt class="col-sm-3">Laboratorio</dt><dd class="col-sm-9">@Model.Laboratorio</dd>
+    <dt class="col-sm-3">Stock</dt><dd class="col-sm-9">@Model.Stock</dd>
+    <dt class="col-sm-3">Vencimiento</dt><dd class="col-sm-9">@Model.FechaVencimiento.ToString("dd/MM/yyyy")</dd>
+    <dt class="col-sm-3">Requiere receta</dt><dd class="col-sm-9">@(Model.RequiereReceta ? "Sí" : "No")</dd>
+</dl>
+@if (!string.IsNullOrEmpty(Model.ImagenPath))
+{
+    <p><img src="@Model.ImagenPath" alt="Imagen" style="max-width:220px;border:1px solid #d5d8dc;border-radius:4px;" /></p>
+}

@@ -1,0 +1,22 @@
+@model SistemaMedicamentos.Models.Entrega
+<dl class="row">
+    <dt class="col-sm-3">Paciente</dt><dd class="col-sm-9">@Model.Paciente?.NombreCompleto</dd>
+    <dt class="col-sm-3">Medicina</dt><dd class="col-sm-9">@Model.Medicina?.Nombre</dd>
+    <dt class="col-sm-3">Sede de entrega</dt><dd class="col-sm-9">@Model.Sede?.Nombre (@Model.Sede?.Ciudad)</dd>
+    <dt class="col-sm-3">F. Recepción</dt><dd class="col-sm-9">@Model.FechaRecepcion.ToString("dd/MM/yyyy")</dd>
+    <dt class="col-sm-3">F. Entrega</dt><dd class="col-sm-9">@Model.FechaEntrega.ToString("dd/MM/yyyy")</dd>
+    <dt class="col-sm-3">Cantidad</dt><dd class="col-sm-9">@Model.Cantidad</dd>
+    <dt class="col-sm-3">Estado</dt><dd class="col-sm-9">@Model.Estado</dd>
+    <dt class="col-sm-3">Observaciones</dt><dd class="col-sm-9">@Model.Observaciones</dd>
+    <dt class="col-sm-3">Comprobante</dt>
+    <dd class="col-sm-9">
+        @if (!string.IsNullOrEmpty(Model.ComprobantePath))
+        {
+            <a asp-action="DescargarComprobante" asp-route-id="@Model.Id" class="btn btn-sm btn-flat-green">Descargar comprobante</a>
+        }
+        else
+        {
+            <span class="text-muted">Sin archivo</span>
+        }
+    </dd>
+</dl>

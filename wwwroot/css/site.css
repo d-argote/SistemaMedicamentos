@@ -1,0 +1,99 @@
+/* Diseño plano y estructurado: colores sólidos, sin degradados. */
+:root {
+    --azul: #1b4f72;
+    --azul-claro: #2e86c1;
+    --verde: #1e8e5a;
+    --gris-fondo: #f4f6f7;
+    --gris-borde: #d5d8dc;
+    --rojo: #a93226;
+}
+
+html { font-size: 15px; }
+body { background: var(--gris-fondo); margin-bottom: 70px; font-family: "Segoe UI", Arial, sans-serif; }
+
+.topbar { background: var(--azul); }
+.topbar .navbar-brand, .topbar .nav-link { color: #fff !important; }
+.topbar .nav-link:hover { background: var(--azul-claro); border-radius: 4px; }
+
+.main-wrap { margin-top: 20px; }
+
+.card-flat {
+    background: #fff;
+    border: 1px solid var(--gris-borde);
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+.card-flat .card-header-flat {
+    background: var(--azul);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px 6px 0 0;
+    font-weight: 600;
+}
+.card-flat .card-body-flat { padding: 16px; }
+
+.btn-flat-primary { background: var(--azul); border-color: var(--azul); color: #fff; }
+.btn-flat-primary:hover { background: var(--azul-claro); border-color: var(--azul-claro); color: #fff; }
+.btn-flat-green { background: var(--verde); border-color: var(--verde); color: #fff; }
+.btn-flat-green:hover { background: #17a673; border-color: #17a673; color: #fff; }
+.btn-flat-red { background: var(--rojo); border-color: var(--rojo); color: #fff; }
+
+.flat-alert { border-radius: 4px; border: none; }
+.table-flat thead { background: var(--azul); color: #fff; }
+.badge-pendiente { background: var(--azul-claro); }
+.badge-entregado { background: var(--verde); }
+.badge-cancelado { background: var(--rojo); }
+
+.stat-box {
+    background: #fff;
+    border: 1px solid var(--gris-borde);
+    border-left: 6px solid var(--azul);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+}
+.stat-box.green { border-left-color: var(--verde); }
+.stat-box.red { border-left-color: var(--rojo); }
+.stat-box .num { font-size: 26px; font-weight: 700; }
+.stat-box .lbl { color: #5d6d7e; font-size: 13px; }
+
+.footer-flat {
+    background: var(--azul);
+    color: #fff;
+    padding: 12px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 13px;
+}
+
+/* Tarjetas de estadísticas del panel */
+.stat-card {
+    background: #fff;
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+.stat-card:hover { border-color: var(--azul-claro); }
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+}
+.icon-blue { background: var(--azul); }
+.icon-sky { background: var(--azul-claro); }
+.icon-green { background: var(--verde); }
+.icon-red { background: var(--rojo); }
+.stat-card .num { font-size: 24px; font-weight: 700; line-height: 1.1; }
+.stat-card .lbl { color: #5d6d7e; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.section-title { font-weight: 600; color: var(--azul); margin-bottom: 10px; font-size: 16px; }
+#calendario { background: #fff; border: 1px solid var(--gris-borde); border-radius: 6px; padding: 12px; }
+.login-box { max-width: 420px; margin: 30px auto; }

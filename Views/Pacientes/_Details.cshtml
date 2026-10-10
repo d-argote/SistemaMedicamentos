@@ -1,0 +1,19 @@
+@model SistemaMedicamentos.Models.Paciente
+<dl class="row">
+    <dt class="col-sm-3">Paciente</dt><dd class="col-sm-9">@Model.NombreCompleto</dd>
+    <dt class="col-sm-3">Cédula</dt><dd class="col-sm-9">@Model.Dni</dd>
+    <dt class="col-sm-3">Teléfono</dt><dd class="col-sm-9">@Model.Telefono</dd>
+    <dt class="col-sm-3">Dirección</dt><dd class="col-sm-9">@Model.Direccion</dd>
+    <dt class="col-sm-3">F. Nacimiento</dt><dd class="col-sm-9">@Model.FechaNacimiento.ToString("dd/MM/yyyy")</dd>
+    <dt class="col-sm-3">F. Registro</dt><dd class="col-sm-9">@Model.FechaRegistro.ToString("dd/MM/yyyy")</dd>
+</dl>
+@if (Model.Entregas.Any())
+{
+    <h6>Entregas del paciente</h6>
+    <ul>
+        @foreach (var e in Model.Entregas)
+        {
+            <li>@e.FechaEntrega.ToString("dd/MM/yyyy") — @e.Medicina?.Nombre x @e.Cantidad (@e.Estado)</li>
+        }
+    </ul>
+}

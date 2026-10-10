@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+<div class="card-flat">
+    <div class="card-header-flat">Sistema de Medicamentos — @ViewBag.AppDescripcion</div>
+    <div class="card-body-flat">
+        <div class="row">
+            <div class="col-md-7">
+                <h4>Control de pacientes, medicinas y entregas</h4>
+                <p>Registre pacientes, administre el stock de medicinas y controle las fechas de <strong>recepción</strong> y <strong>entrega</strong> de medicamentos.</p>
+                <ul>
+                    <li><strong>Administrador:</strong> CRUD de pacientes, medicinas y entregas. Panel y calendario.</li>
+                    <li><strong>Usuario:</strong> ver listados, registrar entregas, ver calendario y descargar comprobantes.</li>
+                </ul>
+                <p>
+                    <a class="btn btn-flat-primary" asp-controller="Dashboard" asp-action="Index">Ir al panel</a>
+                    <a class="btn btn-flat-green" asp-controller="Dashboard" asp-action="Calendar">Ver calendario</a>
+                </p>
+                <p class="text-muted small mb-0">Inicie sesión según su rol para gestionar pacientes, medicinas y entregas.</p>
+            </div>
+            <div class="col-md-5">
+                <div class="row g-2">
+                    <div class="col-6"><div class="stat-box"><div class="num">1</div><div class="lbl">Pacientes</div><a asp-controller="Pacientes" asp-action="Index" class="small">Ver</a></div></div>
+                    <div class="col-6"><div class="stat-box green"><div class="num">2</div><div class="lbl">Medicinas</div><a asp-controller="Medicinas" asp-action="Index" class="small">Ver</a></div></div>
+                    <div class="col-6"><div class="stat-box green"><div class="num">3</div><div class="lbl">Entregas</div><a asp-controller="Entregas" asp-action="Index" class="small">Ver</a></div></div>
+                    <div class="col-6"><div class="stat-box red"><div class="num">4</div><div class="lbl">Calendario</div><a asp-controller="Dashboard" asp-action="Calendar" class="small">Ver</a></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

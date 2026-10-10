@@ -1,0 +1,15 @@
+@model SistemaMedicamentos.Models.Entrega
+@{
+    ViewData["Title"] = "Eliminar entrega";
+}
+<div class="card-flat">
+    <div class="card-header-flat">Eliminar entrega #@Model.Id</div>
+    <div class="card-body-flat">
+        <partial name="_Details" model="Model" />
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-flat-red">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

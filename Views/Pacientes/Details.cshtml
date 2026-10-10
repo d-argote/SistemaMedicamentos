@@ -1,0 +1,15 @@
+@model SistemaMedicamentos.Models.Paciente
+@{
+    ViewData["Title"] = "Detalle de paciente";
+}
+<div class="card-flat">
+    <div class="card-header-flat">Paciente: @Model.NombreCompleto</div>
+    <div class="card-body-flat">
+        <partial name="_Details" model="Model" />
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        @if (User.IsInRole("Administrador"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+        }
+    </div>
+</div>
